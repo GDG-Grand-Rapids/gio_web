@@ -48,6 +48,13 @@ To run stuff locally and hit the postgres container in vagrant, use the 'travis'
 $ mvn clean install -Ptravis
 ```
 
+
+# Use this command in order to populate the database appropriately
+```
+mvn -PlocalDB clean package && java -DconfAdminPassword=calus_is_cool -jar target/conference-web-0.1.0.jar
+```
+
+
 # Available API
 Here is a list of the available apis in the system
 
@@ -58,3 +65,4 @@ Here is a list of the available apis in the system
 - /api/conferenceSession/{id} - will retrieve conference session by id
 - /api/presenter - will retrieve all presenters
 - /api/presenter/{id} - will retrieve presenter by id
+
