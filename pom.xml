@@ -86,6 +86,9 @@
 		<hibernate.version>4.3.0.Final</hibernate.version>
 
 		<jdbc.url>jdbc:postgresql://postgres:5432/postgres</jdbc.url>
+		<jdbc.userId>gdg_admin</jdbc.userId>
+		<jdbc.password>carlus</jdbc.password>
+		<jdbc.defaultSchema>conf_admin</jdbc.defaultSchema>
 	</properties>
 	<build>
 		<plugins>
@@ -210,6 +213,15 @@
 			<id>localDB</id>
 			<properties>
 				<jdbc.url>jdbc:postgresql://192.168.99.100:5432/gio</jdbc.url>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>prodDB</id>
+			<properties>
+				<jdbc.userId>${env.GIO_DB_ENV_POSTGRES_USER}</jdbc.userId>
+				<jdbc.password>${env.GIO_DB_ENV_POSTGRES_PASSWORD}</jdbc.password>
+				<jdbc.url>jdbc:postgresql://${env.GIO_DB_PORT_5432_TCP_ADDR}:5432/${env.GIO_DB_ENV_POSTGRES_DB}</jdbc.url>
 			</properties>
 		</profile>
 
