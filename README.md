@@ -1,6 +1,30 @@
 [![Build Status](https://travis-ci.org/Google-IO-Extended-Grand-Rapids/conference_web.svg?branch=develop)](https://travis-ci.org/Google-IO-Extended-Grand-Rapids/conference_web)
 [![Coverage Status](https://coveralls.io/repos/Google-IO-Extended-Grand-Rapids/conference_web/badge.svg?branch=develop)](https://coveralls.io/r/Google-IO-Extended-Grand-Rapids/conference_web?branch=develop)
 
+# Overview
+This project has undergone some massive changes.  What follows below are the 3 quick and easy steps to get up and running.  This does require that you have the following installed and it is working properly
+
+* Docker
+
+## Get the Google IO Database Image and run it within a container
+
+```
+docker run --name gio-db -p 5432:5432 -d gdggr/gio-db:0.0.3
+```
+
+## Get the Google IO Rest Layer adn run it connected to the database
+
+```
+docker run --name gio-rest -it --link gio-db:gio-db -p 8080:8080 -d gdggr/gio-rest:1.0.0
+```
+
+## The API can be found at this following location
+
+```
+http://192.168.99.100:8080/api/conference
+```
+
+
 # Legacy Documentation below.  Please do not use this.  Needs to be updated...seriously
 
 # Development Environment
