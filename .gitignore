@@ -8,3 +8,4 @@ target
 .settings
 vagrant_config.yml
 bin
+.java-version

@@ -38,6 +38,10 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>4.3.0.Final</version>
@@ -80,34 +84,13 @@
 		<jetty.version>9.1.0.v20131115</jetty.version>
 		<servlet-api.version>3.1.0</servlet-api.version>
 		<hibernate.version>4.3.0.Final</hibernate.version>
-		<liquibase.property.file>/target/classes/liquibase/liquibase.properties</liquibase.property.file>
-		<skipLiquibaseRun>false</skipLiquibaseRun>
 
 		<jdbc.url>jdbc:postgresql://postgres:5432/postgres</jdbc.url>
+		<jdbc.userId>gdg_admin</jdbc.userId>
+		<jdbc.password>carlus</jdbc.password>
+		<jdbc.defaultSchema>conf_admin</jdbc.defaultSchema>
 	</properties>
 	<build>
-		<!-- This resources block was taken from the Spring parent project. The
-			only change that wanted to make was to include the liquibase.properties file.
-			I carried the others forward just in case I ran into issues. -->
-		<resources>
-			<resource>
-				<filtering>true</filtering>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/application.yml</include>
-					<include>**/application.properties</include>
-					<include>**/application-no-web.properties</include>
-					<include>**/liquibase.properties</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<excludes>
-					<exclude>**/application.yml</exclude>
-					<exclude>**/application.properties</exclude>
-				</excludes>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -117,32 +100,10 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>3.3.2</version>
-				<configuration>
-					<skip>${skipLiquibaseRun}</skip>
-					<propertyFile>${liquibase.property.file}</propertyFile>
-					<changeLogFile>src/main/resources/liquibase/db-changelog-master.xml</changeLogFile>
-					<logging>debug</logging>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>process-resources</phase>
-						<configuration>
-							<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-						</configuration>
-						<goals>
-							<goal>update</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -190,13 +151,13 @@
 
 	<profiles>
 		<profile>
-			<!-- that profile is used only for coveralls.io banner that show coverage
+			<!-- that profile is used only for coveralls.io banner that show coverage 
 				at ReadMe.md -->
 			<id>travis</id>
 			<build>
 				<plugins>
 
-					<!-- Used to set custom properties by means of ${argLine}, that is required
+					<!-- Used to set custom properties by means of ${argLine}, that is required 
 						for jacoco -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -249,20 +210,18 @@
 		</profile>
 
 		<profile>
-			<id>skipTestRun</id>
-			<activation>
-				<property>
-					<name>skipTests</name>
-				</property>
-			</activation>
-			<properties>
-				<skipLiquibaseRun>true</skipLiquibaseRun>
-			</properties>
-		</profile>
-		<profile>
 			<id>localDB</id>
 			<properties>
-				<jdbc.url>jdbc:postgresql://localhost:5432/postgres</jdbc.url>
+				<jdbc.url>jdbc:postgresql://192.168.99.100:5432/gio</jdbc.url>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>prodDB</id>
+			<properties>
+				<jdbc.userId>${env.GIO_DB_ENV_POSTGRES_USER}</jdbc.userId>
+				<jdbc.password>${env.GIO_DB_ENV_POSTGRES_PASSWORD}</jdbc.password>
+				<jdbc.url>jdbc:postgresql://${env.GIO_DB_PORT_5432_TCP_ADDR}:5432/${env.GIO_DB_ENV_POSTGRES_DB}</jdbc.url>
 			</properties>
 		</profile>
 
