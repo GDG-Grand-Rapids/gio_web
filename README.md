@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/Google-IO-Extended-Grand-Rapids/conference_web.svg?branch=develop)](https://travis-ci.org/Google-IO-Extended-Grand-Rapids/conference_web)
 [![Coverage Status](https://coveralls.io/repos/Google-IO-Extended-Grand-Rapids/conference_web/badge.svg?branch=develop)](https://coveralls.io/r/Google-IO-Extended-Grand-Rapids/conference_web?branch=develop)
 
+
 # Overview
 This project has undergone some massive changes.  What follows below are the 3 quick and easy steps to get up and running.  This does require that you have the following installed and it is working properly
 
