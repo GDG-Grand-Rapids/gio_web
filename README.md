@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/Google-IO-Extended-Grand-Rapids/conference_web.svg?branch=develop)](https://travis-ci.org/Google-IO-Extended-Grand-Rapids/conference_web)
 [![Coverage Status](https://coveralls.io/repos/Google-IO-Extended-Grand-Rapids/conference_web/badge.svg?branch=develop)](https://coveralls.io/r/Google-IO-Extended-Grand-Rapids/conference_web?branch=develop)
 
+
 # Overview
 This project has undergone some massive changes.  What follows below are the 3 quick and easy steps to get up and running.  This does require that you have the following installed and it is working properly
 
@@ -28,7 +29,7 @@ http://192.168.99.100:8080/api/conference
 In order to develop and add features to this application, it is recommended that you run the gio-db container and run the rest application on the host machine (not in a Docker Container).  The way to run the rest application on your local machine is by using the following command:
 
 ```
-mvn -PlocalDB clean package && java -DconfAdminPassword=nimda -jar target/*.jar
+mvn clean package && java -Dspring.profiles.active=local -DconfAdminPassword=nimda -jar target/*.jar
 ```
 
 This command will compile the application using the _localDB_ profile.  The _localDB_ profile will alter the configuration of the Spring Boot application such that it connects to the docker container database.  The next command, following the &&, is to actually run the application, with the fictious admin password of _nimda_.
