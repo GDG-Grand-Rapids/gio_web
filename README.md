@@ -24,6 +24,15 @@ docker run --name gio-rest -it --link gio-db:gio-db -p 8080:8080 -d gdggr/gio-re
 http://192.168.99.100:8080/api/conference
 ```
 
+# Developing on the REST Application
+In order to develop and add features to this application, it is recommended that you run the gio-db container and run the rest application on the host machine (not in a Docker Container).  The way to run the rest application on your local machine is by using the following command:
+
+```
+mvn -PlocalDB clean package && java -DconfAdminPassword=nimda -jar target/*.jar
+```
+
+This command will compile the application using the *localDB* profile.  The *localDB* profile will alter the configuration of the Spring Boot application such that it connects to the docker container database.  The next command, following the &&, is to actually run the application, with the fictious admin password of *nimda*.
+
 
 # Legacy Documentation below.  Please do not use this.  Needs to be updated...seriously
 
