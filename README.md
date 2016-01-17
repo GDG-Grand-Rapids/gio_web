@@ -31,7 +31,7 @@ In order to develop and add features to this application, it is recommended that
 mvn -PlocalDB clean package && java -DconfAdminPassword=nimda -jar target/*.jar
 ```
 
-This command will compile the application using the *localDB* profile.  The *localDB* profile will alter the configuration of the Spring Boot application such that it connects to the docker container database.  The next command, following the &&, is to actually run the application, with the fictious admin password of *nimda*.
+This command will compile the application using the _localDB_ profile.  The _localDB_ profile will alter the configuration of the Spring Boot application such that it connects to the docker container database.  The next command, following the &&, is to actually run the application, with the fictious admin password of _nimda_.
 
 
 # Legacy Documentation below.  Please do not use this.  Needs to be updated...seriously
