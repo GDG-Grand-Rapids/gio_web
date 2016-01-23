@@ -10,13 +10,13 @@ This project has undergone some massive changes.  What follows below are the 3 q
 ## Get the Google IO Database Image and run it within a container
 
 ```
-docker run --name gio-db -p 5432:5432 -d gdggr/gio-db:0.0.3
+docker run --name gio-db -p 5432:5432 -d gdggr/gio-db
 ```
 
 ## Get the Google IO Rest Layer adn run it connected to the database
 
 ```
-docker run --name gio-rest -it --link gio-db:gio-db -p 8080:8080 -d gdggr/gio-rest:1.0.0
+docker run --name gio-rest -it --link gio-db:gio-db -p 8080:8080 -d gdggr/gio-rest
 ```
 
 ## The API can be found at this following location
