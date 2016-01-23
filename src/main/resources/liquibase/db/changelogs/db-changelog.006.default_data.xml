@@ -83,7 +83,13 @@
     </changeSet>
 
     <changeSet id="006_tagging_database" author="Carlus">
-	<tagDatabase tag="version_1.1"/>
+		<tagDatabase tag="version_1.1"/>
+    </changeSet>
+
+    <changeSet id="006_extend_string_columns" author="Carlus">
+    	<comment>Extending some column names</comment>
+    	<sql>alter table conf_admin.presenter alter column short_bio type varchar(1000)</sql>
+    	<sql>alter table conf_admin.conference_session alter column full_desc type varchar(1000)</sql>
     </changeSet>
 
 </databaseChangeLog>
