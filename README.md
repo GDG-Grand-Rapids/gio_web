@@ -45,4 +45,3 @@ Here is a list of the available apis in the system
 - /api/conferenceSession/{id} - will retrieve conference session by id
 - /api/presenter - will retrieve all presenters
 - /api/presenter/{id} - will retrieve presenter by id
-
