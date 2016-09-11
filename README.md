@@ -20,9 +20,15 @@ docker run --name gio-rest -it --link gio-db:gio-db -p 8080:8080 -d gdggr/gio-re
 ```
 
 ## The API can be found at this following location
+If you are using Docker for Mac, then the host for Docker will be localhost.  If you are using Docker Toolbox, then you will need to use the IP address of the VM hosting your docker instance 192.168.99.100.  We are going to assume that you are using Docker for Mac / Win.
 
 ```
-http://192.168.99.100:8080/api/conference
+http://localhost:8080/api/conference - Docker for Mac / Win
+
+or
+
+http://192.168.99.100:8080/api/conference - Docker Toolbox
+
 ```
 
 # Developing on the REST Application
